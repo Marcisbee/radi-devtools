@@ -1,0 +1,12 @@
+{
+  "tasks": {
+    "setup": "deno run --allow-run=git --allow-read --allow-write=.radi integration/setup.ts",
+    "devtools:demo": "deno run -A examples/devtools/serve.ts",
+    "test:devtools": "deno test -A tests/devtools_test.ts"
+  },
+  "compilerOptions": {
+    "lib": ["deno.ns", "dom", "dom.iterable", "esnext"],
+    "strict": true
+  },
+  "fmt": { "singleQuote": true }
+}

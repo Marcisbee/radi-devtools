@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Radi DevTools</title>
+    <link rel="stylesheet" href="panel.css">
+  </head>
+  <body>
+    <header><input id="filter" type="search" aria-label="Filter nodes" placeholder="Search components…"><strong>Radi DevTools</strong><nav aria-label="Inspector views">
+      <button data-view="components" aria-pressed="true">Components</button>
+      <button data-view="layers" aria-pressed="false">Layers</button>
+      <button data-view="performance" aria-pressed="false">Performance</button>
+    </nav><button id="refresh" title="Refresh inspector">↻</button><span id="status" role="status">Connecting…</span></header>
+    <section id="empty" hidden>
+      <h1>Connect a Radi app</h1>
+      <p>Enable the development bridge in your app, then reload this tab.</p>
+      <pre>import { enableDevTools } from './radi-devtools/src/devtools.ts';
+const dispose = enableDevTools();</pre>
+      <p>Use this only in development. This panel inspects the main frame.</p>
+    </section>
+    <main id="inspector" hidden>
+      <section class="toolbar">
+        <button id="record" aria-pressed="false">Record renders</button>
+        <button id="clear">Clear</button>
+      </section>
+      <div class="workspace">
+        <section aria-label="Nodes and renders" class="results">
+          <div class="columns"
+            aria-hidden="true"><span id="name-column">Component</span><span id="type-column">Type</span><span id="count-column">Calls</span><span id="time-column">Last, ms</span></div>
+          <div id="tree"></div>
+        </section>
+        <aside aria-label="Selection details">
+          <h2 id="selection">Select a component</h2>
+          <div
+            class="actions"><button id="highlight" disabled>Highlight</button><button id="inspect" disabled>Inspect DOM</button></div>
+          <div id="details">
+            <p>Select a row to inspect its props and layout.</p>
+          </div>
+        </aside>
+      </div>
+      <div
+        class="statusbar"><nav id="breadcrumbs" aria-label="Selected node ancestry"></nav><span id="metrics"></span><span id="notice"></span></div>
+    </main>
+    <footer>Render durations are inclusive synchronous Radi work, excluding browser layout and paint.</footer>
+    <script src="panel.js"></script>
+  </body>
+</html>
